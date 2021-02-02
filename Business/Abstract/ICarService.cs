@@ -8,6 +8,5 @@ namespace Business.Abstract
     public interface ICarService
     {
         List<Car> GetAll();
-
     }
 }

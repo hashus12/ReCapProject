@@ -18,7 +18,6 @@ namespace Business.Concrete
         public List<Car> GetAll()
         {
             return _car.GetAll();
-
         }
     }
 }

@@ -12,7 +12,5 @@ namespace DataAccess.Abstract
         void Delete(Car car);
         List<Car> GetById(int id);
         List<Car> GetAll();
-        
-
     }
 }
