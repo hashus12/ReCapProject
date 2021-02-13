@@ -1,8 +1,10 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -17,11 +19,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _Cars = new List<Car>
             {
-                new Car {Id = 1, BrandId = 1, ColorId = 1, DailyPrice = 1000, ModelYear = 2000, Description = "230.000 km"},
-                new Car {Id = 2, BrandId = 1, ColorId = 1, DailyPrice = 2000, ModelYear = 2010, Description = "110.000 km"},
-                new Car {Id = 3, BrandId = 2, ColorId = 2, DailyPrice = 1000, ModelYear = 2012, Description = "201.000 km"},
-                new Car {Id = 4, BrandId = 3, ColorId = 3, DailyPrice = 7500, ModelYear = 2015, Description = "40.000 km"},
-                new Car {Id = 5, BrandId = 2, ColorId = 4, DailyPrice = 3500, ModelYear = 2010, Description = "300.000 km"},
+                new Car {Id = 1, BrandId = 1, ColorId = 1, DailyPrice = 1000, ModelYear = 2000, Description = "otomatik dizel"},
+                new Car {Id = 2, BrandId = 1, ColorId = 1, DailyPrice = 2000, ModelYear = 2010, Description = "otomatik benzin"},
+                new Car {Id = 3, BrandId = 2, ColorId = 2, DailyPrice = 1000, ModelYear = 2012, Description = "manuel dizel"},
+                new Car {Id = 4, BrandId = 3, ColorId = 3, DailyPrice = 7500, ModelYear = 2015, Description = "manuel benzin"},
+                new Car {Id = 5, BrandId = 2, ColorId = 4, DailyPrice = 3500, ModelYear = 2010, Description = "yarıotomatik dizel"},
             };
 
             _Colors = new List<Color>
@@ -85,6 +87,21 @@ namespace DataAccess.Concrete.InMemory
         {
            
             return _Cars.Where(car => car.Id == id).ToList();
+        }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }

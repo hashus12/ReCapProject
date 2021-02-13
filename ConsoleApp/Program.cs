@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -12,24 +13,39 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            InMemoryCarDal ınMemoryCarDal = new InMemoryCarDal();
-            CarManager carManager = new CarManager(ınMemoryCarDal);
 
-            Console.WriteLine("--------ADD---------");
-            ınMemoryCarDal.Add(new Car { Id = 6, BrandId = 3, ColorId = 5, DailyPrice = 1350, ModelYear = 2012, Description = "240.000 km" });
-            ınMemoryCarDal.JoinShow(carManager.GetAll());
+            //CarManager carManager = new CarManager(new EfCarDal());
 
-            Console.WriteLine("---------UPDATE---------");
-            ınMemoryCarDal.Update(new Car {Id = 4, BrandId = 2, ColorId = 4, DailyPrice = 4000, ModelYear = 2011, Description = "100.000 km" });
-            ınMemoryCarDal.JoinShow(carManager.GetAll());
+            //Console.WriteLine("Brand Id'si 1 olan arabalar: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
+            //foreach (var car in carManager.GetCarsByBrandId(1))
+            //{
+            //    Console.WriteLine($"{car.Id}\t{car.ColorId}\t\t{car.BrandId}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Description}");
+            //}
 
-            Console.WriteLine("-----------DELETE--------------");
-            ınMemoryCarDal.Delete(carManager.GetAll()[1]);
-            ınMemoryCarDal.JoinShow(carManager.GetAll());
+            //CarManager carManager = new CarManager(new EfCarDal());
 
-            Console.WriteLine("----------GETBYID--------");
-            var sonuc = ınMemoryCarDal.GetById(4);
-            ınMemoryCarDal.JoinShow(sonuc);
+            //var result = carManager.GetCarDetails();
+
+            //if (result.Success==true)
+            //{
+            //    foreach (var car in result.Data)
+            //    {
+            //        Console.WriteLine(car.CarName + car.BrandName + car.ColorName + car.DailyPrice);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Data);
+            //}
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            rentalManager.Add(new Rental { 
+                CarId = 2,
+                CustomerId = 1,
+                RentDate = 21.01.2020,
+                ReturnDate = 13.02.2021
+            });
         }
     }
 }
