@@ -12,9 +12,9 @@ namespace Business.Concrete
     public class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
-        public BrandManager(IBrandDal brand)
+        public BrandManager(IBrandDal brandDal)
         {
-            _brandDal = brand;
+            _brandDal = brandDal;
         }
 
         public IResult Add(Brand brand)

@@ -43,8 +43,6 @@ namespace ConsoleApp
             rentalManager.Add(new Rental { 
                 CarId = 2,
                 CustomerId = 1,
-                RentDate = 21.01.2020,
-                ReturnDate = 13.02.2021
             });
         }
     }

@@ -17,22 +17,28 @@ namespace DataAccess.Concrete.EntityFramework
 
             using (ReCapDbContext context = new ReCapDbContext())
             {
-                var result = from re in filter is null ? context.Rentals : context.Rentals.Where(filter)
-                             join ca in context.Cars
-                             on re.CarId equals ca.Id
-                             join cus in context.Customers
-                             on re.CustomerId equals cus.Id
-                             join us in context.Users
-                             on cus.UserId equals us.Id
+                var result = from r in filter is null ? context.Rentals : context.Rentals.Where(filter)
+                             join c in context.Cars
+                             on r.CarId equals c.Id
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join cu in context.Customers
+                             on r.CustomerId equals cu.Id
+                             join u in context.Users
+                             on cu.UserId equals u.Id
                              select new RentalDetailDto
                              {
-                                 Id = re.Id,
-                                 CarName = ca.CarName,
-                                 CustomerName = cus.CompanyName,
-                                 CarId = ca.Id,
-                                 RentDate = re.RentDate,
-                                 ReturnDate = re.ReturnDate,
-                                 UserName = us.FirstName + " " + us.LastName
+                               Id=r.Id,
+                               CarId=r.CarId,
+                               BrandName = b.BrandName,
+                               CompanyName = cu.CompanyName,
+                               Decription = c.Description,
+                               ModelYear = c.ModelYear,
+                               RentDate = r.RentDate,
+                               ReturnDate = r.ReturnDate,
+                               DailyPrice = c.DailyPrice,
+                               FirstName = u.FirstName,
+                               LastName = u.LastName
                              };
 
                 return result.ToList();
